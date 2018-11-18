@@ -1,5 +1,6 @@
 var orm = require('../config/orm.js');
 
+orm.selectAll
 /*this is exprted to burgers_controller - look at hbs 12 for expample
 burger.js will point to burger_controller.js*/
 
