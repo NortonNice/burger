@@ -14,23 +14,51 @@ var connection = require("./connection.js");
 var orm = {
     //selectAll()
     selectAll: function () {
-        connection.query("SELECT * FROM burgers", function (err, res) {
+        console.log('Selecting all burgers from database');
+        var query = connection.query(
+            "SELECT * FROM burgers", function (err, res) {
             if (err) throw err;
             console.log(res);
+            console.log(query.sql);
         });
     },
 
     //insertOne()
-    insertOne: function() {
-        connection.query("INSERT INTO burgers (burger_name, devoured) VALUES (?, ?", function (err, res) {
-            if (err) throw err;
-            console.log(res);
-        });
+    insertOne: function () {
+        console.log('Putting a new burger in the database!');
+        var query = connection.query(
+            "INSERT INTO burgers SET ?",
+
+            {
+                burger_name: '',
+                devoured: false
+            },
+            function (err, res) {
+                console.log(res.affectedRows + ' burger inserted!\n')
+            }
+
+        )
     },
 
     //updateOne()
     updateOne: function() {
-        connection.query("UPDATE burgers WHERE ")
+        console.log('Updating selected burger to devoured...\n');
+        var query = connection.query(
+            "UPDATE burgers SET ? WHERE ?",
+        [
+            {
+                devoured: true,
+            },
+            {  
+            //NEED BURGER SELECTION HERE//
+            //BURGER ID = DEVOURED BUTTON ID WHERE WILL THIS BE TAKEN FROM?
+            }
+        ],
+        function(err, res) {
+            console.log(res.affectedRows + ' burgers updated!\n');
+        }
+        );
+            
     }
   
 };
