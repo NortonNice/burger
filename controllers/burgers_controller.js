@@ -1,7 +1,7 @@
 express = require('express');
 var router = express.Router();
 //IMPORTING THE MODEL TO USE IT'S DATABASE FUNCTIONS:
-var burger = require('../models/burger');
+var burger = require('../models/burger.js');
 var exbhps = require('express-handlebars');
 
 
@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
 });
 
 router.post("/api/burgers", function (req, res) {
-    burger.create([
+    burger.insert([
         "name", "devoured"
     ], [
             req.body.name, req.body.devoured
@@ -45,17 +45,5 @@ router.put("/api/burgers/:id", function (req, res) {
     });
 });
 
-router.delete("/api/burgers/:id", function (req, res) {
-    var condition = "id = " + req.params.id;
-
-    burger.delete(condition, function (result) {
-        if (result.affectedRows == 0) {
-            // If no rows were changed, then the ID must not exist, so 404
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
-    });
-});
 // EXPORT ROUTES FOR SERVER.JS TO USE
 module.exports = router;

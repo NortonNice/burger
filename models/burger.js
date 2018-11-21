@@ -1,29 +1,5 @@
 var orm = require('../config/orm.js');
 
-//NEED TO FIX THIS , PULLED FROM CATS.JS//////
-var burger = {
-        all: function(cb) {
-          orm.all("cats", function(res) {
-            cb(res);
-          });
-        },
-        // The variables cols and vals are arrays.
-        create: function(cols, vals, cb) {
-          orm.create("cats", cols, vals, function(res) {
-            cb(res);
-          });
-        },
-        update: function(objColVals, condition, cb) {
-          orm.update("cats", objColVals, condition, function(res) {
-            cb(res);
-          });
-        },
-        delete: function(condition, cb) {
-          orm.delete("cats", condition, function(res) {
-            cb(res);
-          });
-        }
-      };
 /*this is exprted to burgers_controller - look at hbs 12 for expample
 burger.js will point to burger_controller.js*/
 
@@ -33,6 +9,28 @@ the ORM functions using burger specific input for the ORM.
 create a function that takes in the orm, ypu will pass in a burger name
 you can require the logic from this file in server 
 router will call the model*/
+
+//NEED TO FIX THIS , PULLED FROM CATS.JS//////
+var burger = {
+        all: function(cb) {
+          orm.selectAll("burgers", function(res) {
+            cb(res);
+          });
+        },
+        // The variables cols and vals are arrays.
+        insert: function(cols, vals, cb) {
+          orm.insertOne("burgers", cols, vals, function(res) {
+            cb(res);
+          });
+        },
+        update: function(objColVals, condition, cb) {
+          orm.updateOne("burgers", objColVals, condition, function(res) {
+            cb(res);
+          });
+        },
+
+      };
+module.exports = burger;
 
         //burger.selectAll()
 

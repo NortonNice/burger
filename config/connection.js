@@ -13,5 +13,5 @@ connection.connect(function(err, res) {
     console.log('Connected!')
 });
 
-module.exports.connection = connection;
+module.exports = connection;
         
