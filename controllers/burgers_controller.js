@@ -2,7 +2,6 @@ express = require('express');
 var router = express.Router();
 //IMPORTING THE MODEL TO USE IT'S DATABASE FUNCTIONS:
 var burger = require('../models/burger.js');
-var exbhps = require('express-handlebars');
 
 
 //CREATING THE ROUTER AND ALL IT'S ROUTES IN THIS FILE SO IT CAN CONTROL THE LOGIC:
@@ -10,7 +9,7 @@ var exbhps = require('express-handlebars');
 router.get('/', function (req, res) {
     burger.all(function (data) {
         var hbsObject = {
-            burger_db: data
+            burgers: data
         };
         console.log(hbsObject);
         res.render('index', hbsObject);

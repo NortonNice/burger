@@ -6,13 +6,15 @@ var connection = require("./connection.js");
 
 var orm = {
     
-    selectAll: function () {
+    selectAll: function (cb) {
         console.log('Selecting all burgers from database');
-        var query = connection.query(
+        connection.query(
             "SELECT * FROM burgers", function (err, res) {
             if (err) throw err;
             console.log(res);
-            console.log(query.sql);
+            cb(res);
+           // console.log(query.sql);
+
         });
     },
 
@@ -22,8 +24,8 @@ var orm = {
             "INSERT INTO burgers SET ?",
 
             {
-                burger_name: '',
-                devoured: false
+                burger_name: "",
+                devoured: true
             },
             function (err, res) {
                 console.log(res.affectedRows + ' burger inserted!\n')

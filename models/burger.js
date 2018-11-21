@@ -13,7 +13,7 @@ router will call the model*/
 //NEED TO FIX THIS , PULLED FROM CATS.JS//////
 var burger = {
         all: function(cb) {
-          orm.selectAll("burgers", function(res) {
+          orm.selectAll(function(res) {
             cb(res);
           });
         },
@@ -30,13 +30,9 @@ var burger = {
         },
 
       };
+      
+//burger.insert();
 module.exports = burger;
-
-        //burger.selectAll()
-
-//Export at the end of the `burger.js` file.*/
-
-        //modules.export = 'burger';
 
 /*function will take in the name of the burger 
 you will send the name of the burger to the orm
